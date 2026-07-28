@@ -32,8 +32,8 @@ It is built as a lightweight, deployment-ready web application using Streamlit a
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/<your-username>/DermaSense.git
-   cd DermaSense
+   git clone https://github.com/reevacodes/Dermasense-skin-disease-detector.git
+   cd Dermasense-skin-disease-detector
    ```
 
 2. **Install Dependencies**:
