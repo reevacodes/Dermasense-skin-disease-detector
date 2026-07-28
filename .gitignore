@@ -1,0 +1,6 @@
+data/
+dermasense_skin_model.keras
+dermasense_skin_model.h5
+dermasense_report.pdf
+__pycache__/
+.streamlit/
