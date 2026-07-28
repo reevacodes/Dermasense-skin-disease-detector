@@ -1,5 +1,5 @@
 streamlit
 tensorflow-cpu
-numpy
+numpy<2
 Pillow
 fpdf2
