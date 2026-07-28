@@ -1,4 +1,5 @@
 # ---------------------------- Streamlit Config ----------------------------
+# pyrefly: ignore [missing-import]
 import streamlit as st
 st.set_page_config(page_title="DermaSense - Skin Disease Detector", layout="wide")
 
@@ -14,7 +15,38 @@ st.markdown("""
     color: #fafafa;
 }
 
+/* Navigation Header Bar */
+.nav-bar {
+    background-color: rgba(14, 17, 23, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    padding: 14px 40px;
+    margin: -6rem -4rem 2rem -4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 999;
+}
 
+.nav-logo {
+    color: #4ea8de;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+}
+
+.nav-item {
+    color: #b0b0b0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: default;
+}
 
 /* Glassmorphism Containers */
 .custom-card {
@@ -134,7 +166,15 @@ st.markdown("""
 
 /* Media Queries for Responsive Design on Mobile Devices */
 @media (max-width: 768px) {
-
+    .nav-bar {
+        padding: 12px 20px;
+        margin: -6rem -2rem 1.5rem -2rem;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .nav-links {
+        gap: 16px;
+    }
     .custom-card {
         padding: 16px;
         margin-bottom: 14px;
@@ -178,7 +218,9 @@ except ImportError:
 # ---------------------------- Model Loading ----------------------------
 @st.cache_resource
 def load_tflite_model():
-    interpreter = tflite.Interpreter(model_path="dermasense_skin_model.tflite")
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(current_dir, "dermasense_skin_model.tflite")
+    interpreter = tflite.Interpreter(model_path=model_path)
     interpreter.allocate_tensors()
     return interpreter
 
@@ -284,7 +326,17 @@ jammu_clinics = [
     }
 ]
 
-
+# ---------------------------- Navigation Header Bar ----------------------------
+st.markdown("""
+    <div class="nav-bar">
+        <div class="nav-logo">DermaSense</div>
+        <div class="nav-links">
+            <span class="nav-item">Diagnostics Portal</span>
+            <span class="nav-item">Healthcare Referrals</span>
+            <span class="nav-item">Support</span>
+        </div>
+    </div>
+""", unsafe_allow_html=True)
 
 # ---------------------------- Main Page Header ----------------------------
 st.markdown("""
